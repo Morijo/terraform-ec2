@@ -1,5 +1,5 @@
 resource "aws_vpc" "this" {
-  cidr_block = var.vpc_cidr
+  cidr_block = var.aws_vpc_cidr
   tags = {
     Name = "vpc_web"
   }
@@ -14,7 +14,7 @@ resource "aws_internet_gateway" "this" {
 
 resource "aws_subnet" "public" {
   vpc_id            = aws_vpc.this.id
-  cidr_block        = var.public_cidr
+  cidr_block        = var.aws_public_cidr
   availability_zone = "${var.aws_region}a"
   map_public_ip_on_launch = true
   tags = {
@@ -24,7 +24,7 @@ resource "aws_subnet" "public" {
 
 resource "aws_subnet" "private" {
   vpc_id            = aws_vpc.this.id
-  cidr_block        = var.private_cidr
+  cidr_block        = var.aws_private_cidr
   availability_zone = "${var.aws_region}a"
   tags = {
     Name = "sn_private"

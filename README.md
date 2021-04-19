@@ -11,6 +11,7 @@ To meet these requirements and be able to reuse the code, this project is divide
 ## Deploy
 
 To execute the terraform, you must change the variables present at the root of the project [variables.tf](https://github.com/Morijo/terraform-ec2/blob/master/variables.tf)
+
 To execute the application that will be launched in the docker, the aws account credentials present in the file must be changed [commons.sh](https://github.com/Morijo/terraform-ec2/blob/master/scripts/commons.sh)
 
 Then, execute the following commands to deploy the EC2: 

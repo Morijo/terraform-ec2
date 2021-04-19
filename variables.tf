@@ -10,6 +10,6 @@ variable "aws_private_cidr" { default = "192.168.6.0/23" }
 
 #### DNS
 variable "aws_dns_id" { default = "Z0010070OXL10M6ONM6K" }
-variable "aws_dns_domain_name" { default = "api.morijo.com.br" }
+variable "aws_dns_domain_name" { default = "ec2.morijo.com.br" }
 variable "aws_dns_type" { default = "A" }
 variable "aws_dns_ttl" { default = 300 }

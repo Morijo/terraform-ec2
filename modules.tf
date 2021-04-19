@@ -10,6 +10,7 @@ module "ec2" {
 
 module "network" {
   source = "./modules/network"
+  project = var.project
   aws_region = var.aws_region
   aws_instance_type = var.aws_instance_type
   aws_vpc_cidr = var.aws_vpc_cidr

@@ -1,3 +1,4 @@
+variable "project" {}
 variable "aws_region" {}
 variable "aws_vpc_cidr" {}
 variable "aws_public_cidr" {}

@@ -1,33 +1,33 @@
 resource "aws_vpc" "this" {
-  cidr_block = var.vpc_cidr
+  cidr_block = var.aws_vpc_cidr
   tags = {
-    Name = "vpc_web"
+    Name = format("%s-vpc",var.project)
   }
 }
 
 resource "aws_internet_gateway" "this" {
   vpc_id = aws_vpc.this.id
   tags = {
-    Name = "gw_web"
+    Name = format("%s-gw",var.project)
   }
 }
 
 resource "aws_subnet" "public" {
   vpc_id            = aws_vpc.this.id
-  cidr_block        = var.public_cidr
+  cidr_block        = var.aws_public_cidr
   availability_zone = "${var.aws_region}a"
   map_public_ip_on_launch = true
   tags = {
-    Name = "sn_public"
+    Name = format("%s-sn_public",var.project)
   }
 }
 
 resource "aws_subnet" "private" {
   vpc_id            = aws_vpc.this.id
-  cidr_block        = var.private_cidr
+  cidr_block        = var.aws_private_cidr
   availability_zone = "${var.aws_region}a"
   tags = {
-    Name = "sn_private"
+    Name = format("%s-sn_private",var.project)
   }
 }
 
@@ -38,14 +38,14 @@ resource "aws_route_table" "public" {
     gateway_id = aws_internet_gateway.this.id
   }
   tags = {
-    Name = "rt_public"
+    Name = format("%s-rt_public",var.project)
   }
 }
 
 resource "aws_route_table" "private" {
   vpc_id = aws_vpc.this.id
   tags = {
-    Name = "rt_private"
+    Name = format("%s-rt_private",var.project)
   }
 }
 

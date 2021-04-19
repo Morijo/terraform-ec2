@@ -1,38 +1,24 @@
-# Dillinger
-## _The Last Markdown Editor, Ever_
+# Terraform-ec2
+This project aims to create an ec2 instance to run a web application.
+To meet these requirements and be able to reuse the code, this project is divided into 3 (three) modules (EC2/Network/Route53).
 
-## Features
+## Modules
 
-- Import a HTML file and watch it magically convert to Markdown
-- Drag and drop images (requires your Dropbox account be linked)
-- Import and save files from GitHub, Dropbox, Google Drive and One Drive
-- Drag and drop markdown and HTML files into Dillinger
-- Export documents as Markdown, HTML and PDF
+- [EC2] Responsible for all instance configuration and monitoring.
+- [Network] Responsible for creating VPC, public and private subnet, routing table, gateway and security group.
+- [Route53] Responsible for creating the dns that is used in the application.
 
-## Tech
+## Deploy
 
-Dillinger uses a number of open source projects to work properly:
+To execute the terraform, you must change the variables present at the root of the project [variables.tf](https://github.com/Morijo/terraform-ec2/blob/master/variables.tf)
+To execute the application that will be launched in the docker, the aws account credentials present in the file must be changed [commons.sh](https://github.com/Morijo/terraform-ec2/blob/master/scripts/commons.sh)
 
-- [AngularJS] - HTML enhanced for web apps!
-- [Ace Editor] - awesome web-based text editor
-- [markdown-it] - Markdown parser done right. Fast and easy to extend.
-- [Twitter Bootstrap] - great UI boilerplate for modern web apps
-- [node.js] - evented I/O for the backend
-- [Express] - fast node.js network app framework [@tjholowaychuk]
-- [Gulp] - the streaming build system
-- [Breakdance](https://breakdance.github.io/breakdance/) - HTML
-to Markdown converter
-- [jQuery] - duh
-
-## Installation
-
-Dillinger requires [Node.js](https://nodejs.org/) v10+ to run.
-
-Install the dependencies and devDependencies and start the server.
-
+Then, execute the following commands to deploy the EC2: 
 ```sh
+terraform init
 terraform validate
-terraform plan -out stone
-terraform apply stone
+terraform plan -out intention
+terraform apply intention
 ```
-> Note: `--capt-add=SYS-ADMIN` is required for PDF rendering.
+
+> Note: This ec2 has releases on ports 80 (http), 443 (https) and 22 (ssh), port 22 can be removed from the security group if necessary, on ec2 the SSM agent is already installed.

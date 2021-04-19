@@ -7,7 +7,7 @@ sudo apt-get install python3-certbot-nginx -y
 sudo cat > /etc/nginx/conf.d/api.conf << EOL
 server {
     listen 80;
-    server_name api.morijo.com.br;
+    server_name ec2.morijo.com.br;
     location / {
         proxy_pass http://127.0.0.1:5000;
         proxy_set_header Host \$host;
@@ -17,7 +17,7 @@ server {
     }
 }
 EOL
-sudo certbot --nginx --preferred-challenges http -d api.morijo.com.br -m jpmorijo@gmail.com --redirec --agree-tos  --quiet
+sudo certbot --nginx --preferred-challenges http -d ec2.morijo.com.br -m jpmorijo@gmail.com --redirec --agree-tos  --quiet
 sudo service nginx restart
 
 #Install Cloudwatch agent

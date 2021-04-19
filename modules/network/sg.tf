@@ -32,6 +32,6 @@ resource "aws_security_group" "this" {
   }
 
   tags = {
-    Name = "sg_web"
+    Name = format("%s-sg",var.project)
   }
 }
